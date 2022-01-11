@@ -70,6 +70,7 @@ After these steps are done, the Proxmox VE will install.
 ### 4. Confirm that IOMMU is enabled 
 - Use the command ``dmesg | grep -e DMAR -e IOMMU``
   - There should be a line that shows ``DMAR: IOMMU enabled``
+<img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/DmesgDmar.JPG" width="500" height="300">
  
 ### 5. Add modules to /etc/modules 
  - Add the following  
@@ -91,15 +92,38 @@ vfio_virqfd
    AMD-Vi: Interrupt remapping enabled
    DMAR-IR: Enabled IRQ remapping in x2apic mode" ('x2apic' can be different on old CPUs, but should still work)
    ```
+  <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/dmesgremapping.JPG" width="500" height="120">
+ 
  ### 2. If you did not see that remapping is enabled, use this command 
  - Command: ``echo "options vfio_iommu_type1 allow_unsafe_interrupts=1" > /etc/modprobe.d/iommu_unsafe_interrupts.conf``
  
- # Configuring Proxmox to recognize the LAN and WAN port 
- - There are two ways to do this. 
- 
- 1. Create a virtual machine and go into [Virtual Machine] --> Hardware --> Add --> PCI express. This adds the hardware to the virtual machine 
+# Configuring Proxmox to recognize the LAN and WAN port 
+- The NIC has to be recognize by Proxmox and there are two ways to do this.
+1. Create a VM on the local machine and configure the hardware to use PCI express
+2. Create a network Linux bridge on the local machine (Preferred)
 
-2. 
+# Hardware to PCI express
+- This method works, but there is a better way to do it. Most people face the issue of their machine locking in Proxmox at start up. 
+- To do this, go to [VM name] --> Hardware --> Add --> Select both ethernet ports 
+<img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/HardwaretoPCI.JPG" width="1300" height="500">
+- In the picture above, there are two devices, the ``hostpci0`` and ``hostpci1``
+   - **Please Note**: This are each assigned to the two ports. You can see this by 0000.03.00.X
+ 
+# Network Linux Bridge
+- This is the method I used and it works well.
+
+Step 1. 
+- Click on local machine --> Network --> Create --> Linux Bridge 
+<img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/LinuxBridge.JPG" width="900" height="500">
+ 
+- This is the menu that is brought up, Fill it in according to the user set up
+<img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/LinuxBridge2.JPG" width="1100" height="200">
+- My setup utilizes enp3s0f0 and enp3s01. 
+- The CIDR 192.168.1.96 CIDR is for the Prox mox server.
+
+For more information to do this, please visit (netgate.com)[https://docs.netgate.com/pfsense/en/latest/recipes/virtualize-proxmox-ve.html]. Each setup varies. 
+
+
 
 
  
