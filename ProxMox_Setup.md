@@ -47,11 +47,11 @@ The program I used to load the ISO image on a USB is [balenaEtcher](https://www.
 5. Set up the Administrator Password and E-Mail address
 6. Set the Network Configuration 
 After these steps are done, the Proxmox VE will install.
-- Once the install is complete, the user can access the Web interface via https://<IP address>:8006/
+- Once the install is complete, the user can access the Web interface via ``https://<IP address>:8006/``
   - The web interface can be signed in using root and the password set during the installation. 
  
 # Enabling IOMMU
-- IOMMU allows the user to "pass" graphics cards or other PCI device to a virtual machine. Since the NIC is in the PCI express slot, this is crucial.
+ IOMMU allows the user to "pass" graphics cards or other PCI device to a virtual machine. Since the NIC is in the PCI express slot, this is crucial.
   - The offical documentation to enable IOMMU for Proxmox is [here](https://pve.proxmox.com/wiki/Pci_passthrough#Enable_the_IOMMU)
  
 ### 1. Connect to the Proxmox box using SSH 
@@ -95,7 +95,11 @@ vfio_virqfd
  - Command: ``echo "options vfio_iommu_type1 allow_unsafe_interrupts=1" > /etc/modprobe.d/iommu_unsafe_interrupts.conf``
  
  # Configuring Proxmox to recognize the LAN and WAN port 
+ - There are two ways to do this. 
  
+ 1. Create a virtual machine and go into [Virtual Machine] --> Hardware --> Add --> PCI express. This adds the hardware to the virtual machine 
+
+2. 
 
 
  
