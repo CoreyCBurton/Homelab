@@ -92,6 +92,7 @@ vfio_virqfd
    AMD-Vi: Interrupt remapping enabled
    DMAR-IR: Enabled IRQ remapping in x2apic mode" ('x2apic' can be different on old CPUs, but should still work)
    ```
+  - Below shows a picture of the output on my Proxmox server. 
   <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/dmesgremapping.JPG" width="500" height="120">
  
  ### 2. If you did not see that remapping is enabled, use this command 
@@ -103,27 +104,28 @@ vfio_virqfd
 2. Create a network Linux bridge on the local machine (Preferred)
 
 # Hardware to PCI express
-- This method works, but there is a better way to do it. Most people face the issue of their machine locking in Proxmox at start up. 
+- This method works, but some people run into an issue were their machine locks up. With my setup, I faced this issue 
 - To do this, go to [VM name] --> Hardware --> Add --> Select both ethernet ports 
 <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/HardwaretoPCI.JPG" width="1300" height="500">
+
 - In the picture above, there are two devices, the ``hostpci0`` and ``hostpci1``
    - **Please Note**: This are each assigned to the two ports. You can see this by 0000.03.00.X
  
 # Network Linux Bridge
-- This is the method I used and it works well.
+- This is the method that is perferred to most people. It worked well for this setup. 
 
-Step 1. 
+ 
 - Click on local machine --> Network --> Create --> Linux Bridge 
 <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/LinuxBridge.JPG" width="900" height="500">
- 
-- This is the menu that is brought up, Fill it in according to the user set up
+ - This is the menu that is brought up, Fill it in according to the user set up
+
+- Below shows a picutre of how I configured mine. 
 <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/LinuxBridge2.JPG" width="1100" height="200">
+
 - My setup utilizes enp3s0f0 and enp3s01. 
-- The CIDR 192.168.1.96 CIDR is for the Prox mox server.
+ - The CIDR 192.168.1.96 CIDR is for the Proxmox server along with its gateway.
 
-For more information to do this, please visit (netgate.com)[https://docs.netgate.com/pfsense/en/latest/recipes/virtualize-proxmox-ve.html]. Each setup varies. 
-
-
+- This setup can vary from user to user. The documentation on (netgate.com)[https://docs.netgate.com/pfsense/en/latest/recipes/virtualize-proxmox-ve.html] is a great resource. 
 
 
  
