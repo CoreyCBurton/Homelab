@@ -125,7 +125,7 @@ vfio_virqfd
 - My setup utilizes enp3s0f0 and enp3s01. 
  - The CIDR 192.168.1.96 CIDR is for the Proxmox server along with its gateway.
 
-- This setup can vary from user to user. The documentation on (netgate.com)[https://docs.netgate.com/pfsense/en/latest/recipes/virtualize-proxmox-ve.html] is a great resource. 
+- This setup can vary from user to user. The documentation on [netgate.com](https://docs.netgate.com/pfsense/en/latest/recipes/virtualize-proxmox-ve.html) is a great resource. 
 
 
  
