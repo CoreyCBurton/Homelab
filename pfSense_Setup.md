@@ -25,8 +25,32 @@ Now that Proxmox is installed, the ISO of pfSense can be added to the server to 
   - Below is a screenshot of my settings 
   - <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/Start%20up%20at%20boot.png" width="500" height="500">
 
+- Go to pfSense VM --> Hardware --> Add --> Network device  
+  - Make sure both network devices are added. Below shows the settings that both vmbr0 and vmbr1 are added to pfSense machine.
+  - <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/Hardware%20Network%20Devices%20.png" width="500" height="500">
+
 # Start up the VM
-- 
+- Select Install
+- <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/Install%20pfSense.png" width="500" height="500">
+
+
+- Use the default keymap 
+- <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/DefaultKeymap.png" width="500" height="500">
+
+
+- Auto (UFS) BIOS
+<img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/UFS%20boot%20install.png" width="500" height="500">
+
+
+- No manual install is needed 
+- <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/manual.png" width="500" height="500">
+
+
+- Reboot the computer 
+- <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/Reboot.png" width="500" height="500">
+
+
+
 
    
 
