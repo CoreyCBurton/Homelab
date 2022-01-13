@@ -50,8 +50,24 @@ Now that Proxmox is installed, the ISO of pfSense can be added to the server to 
 - <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/Reboot.png" width="500" height="500">
 
 # Setup pfsense
-- When pfSense is booted up, there is a screen that shows both that the LAN and WAN have been assigned to the interfaces (vmbr0 vmbr1)
-- 
+- When you first launch up pfSense, it is going to ask if you would like to setup VLANS now. For this lab, it is not required 
+- It is then going to ask which interfaces will be the LAN and WAN. my set up follows...
+  - WAN: vtnet0
+  - LAN: vtnet1
+- It will then ask you to confirm 
+- <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/pfsense%20Interfaces%20.png" width="500" height="500">
+
+- pfSense is then going to assign you a WAN and LAN ip on each interface 
+  - The screenshot below shows my set up 
+    - WAN: 192.168.1.?
+    - LAN:192.168.1.1
+- <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/LAN%20and%20WAN%20initial%20setup.png" width="500" height="500">
+
+- I would like my lab to be under the subnet 192.168.0.100, so I will change it accordingly by typing in 2 
+- <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/LAN%20setup%20.png" width="500" height="500">
+
+- Setting up DHCP server
+<img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/DHCP%20server.png" width="500" height="500">
 
 
 
