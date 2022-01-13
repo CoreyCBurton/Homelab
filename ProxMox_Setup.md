@@ -19,7 +19,8 @@ For this homelab, pfSense is going to be virtualized as a router/firewall. A NIC
    - In this case, the 10th Gen Intel® Core™ i7-10700 support VT-D
 
 # Instalation of the NIC card
-The installation of the NIC was fairly easy, The picture below shows the NIC card used place in the PCI express slot on the motherboard. 
+The installation of the NIC was fairly easy, The picture below shows the NIC card used place in the PCI express slot on the motherboard.
+
 <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/NIC_Card_install.jpg" width="500" height="500">
 
 # Enabling VT-D and virtualization
@@ -61,7 +62,7 @@ After these steps are done, the Proxmox VE will install.
 - Change the following line GRUB_CMDLINE_LINUX_DEFAUILT to the following depending on your set up
   - AMD: GRUB_CMDLINE_LINUX_DEFAULT="quiet amd_iommu=on"
   - Intel: GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on"
-<img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/Capture.JPG" width="700" height="500">
+<img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/Capture.JPG">
  
 ### 3. Update-grub
    - Use the command ``update-grub``
@@ -70,7 +71,7 @@ After these steps are done, the Proxmox VE will install.
 ### 4. Confirm that IOMMU is enabled 
 - Use the command ``dmesg | grep -e DMAR -e IOMMU``
   - There should be a line that shows ``DMAR: IOMMU enabled``
-<img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/DmesgDmar.JPG" width="500" height="300">
+<img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/DmesgDmar.JPG">
  
 ### 5. Add modules to /etc/modules 
  - Add the following  
@@ -93,7 +94,7 @@ vfio_virqfd
    DMAR-IR: Enabled IRQ remapping in x2apic mode" ('x2apic' can be different on old CPUs, but should still work)
    ```
   - Below shows a picture of the output on my Proxmox server. 
-  <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/dmesgremapping.JPG" width="500" height="120">
+  <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/dmesgremapping.JPG">
  
  ### 2. If you did not see that remapping is enabled, use this command 
  - Command: ``echo "options vfio_iommu_type1 allow_unsafe_interrupts=1" > /etc/modprobe.d/iommu_unsafe_interrupts.conf``
@@ -106,7 +107,7 @@ vfio_virqfd
 # Hardware to PCI express
 - This method works, but some people run into an issue were their machine locks up. With my setup, I faced this issue 
 - To do this, go to [VM name] --> Hardware --> Add --> Select both ethernet ports 
-<img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/HardwaretoPCI.JPG" width="1300" height="500">
+<img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/HardwaretoPCI.JPG">
 
 - In the picture above, there are two devices, the ``hostpci0`` and ``hostpci1``
    - **Please Note**: This are each assigned to the two ports. You can see this by 0000.03.00.X
@@ -116,16 +117,15 @@ vfio_virqfd
 
  
 - Click on local machine --> Network --> Create --> Linux Bridge 
-<img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/LinuxBridge.JPG" width="900" height="500">
- - This is the menu that is brought up, Fill it in according to the user set up
+<img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/LinuxBridge.JPG">
 
-- Below shows a picutre of how I configured mine. 
-<img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/LinuxBridge2.JPG" width="1100" height="200">
+ - This is the menu that is brought up, Fill it in according to the user set up
+    - Below shows a picutre of how I configured mine.
+ 
+<img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/LinuxBridge2.JPG">
 
 - My setup utilizes enp3s0f0 and enp3s01. 
- - The CIDR 192.168.1.96 CIDR is for the Proxmox server along with its gateway.
-
-- This setup can vary from user to user. The documentation on [netgate.com](https://docs.netgate.com/pfsense/en/latest/recipes/virtualize-proxmox-ve.html) is a great resource. 
+ - This setup can vary from user to user. The documentation on [netgate.com](https://docs.netgate.com/pfsense/en/latest/recipes/virtualize-proxmox-ve.html) is a great resource. 
 
 
  
