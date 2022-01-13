@@ -49,6 +49,10 @@ Now that Proxmox is installed, the ISO of pfSense can be added to the server to 
 - Reboot the computer 
 - <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/Reboot.png" width="500" height="500">
 
+# Setup pfsense
+- When pfSense is booted up, there is a screen that shows both that the LAN and WAN have been assigned to the interfaces (vmbr0 vmbr1)
+- 
+
 
 
 
