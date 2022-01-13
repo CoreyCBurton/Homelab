@@ -6,7 +6,7 @@ This repo shows the progress of my homelab. As of now, pfSense is being used as 
 - [pfSense setup](https://github.com/CoreyCBurton/Homelab/blob/main/pfSense_Setup.md)
 
 # The reason behind this project
-This homelab allows me to practice for certifications like the CCNA and can hosts future projects. it was a great learning experience.
+This homelab allows me to practice for certifications like the CCNA and can hosts future projects.
 
 # Topology of the homelab
 <img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/HomeLab_Toplogy_1.11.22.jpg" width="500" height="800">
