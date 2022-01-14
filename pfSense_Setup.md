@@ -46,7 +46,7 @@ Now that Proxmox is installed, the ISO of pfSense can be added to the server to 
 
 
 ## For my VM, I used Auto (UFS) BIOS as the partition
-<img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/UFS%20boot%20install.png" width="500" height="500">
+<img src="https://github.com/CoreyCBurton/Homelab/blob/main/Pictures/UFS%20boot%20install.png">
 
 
 ## For this lab, any manual install is not needed needed 
